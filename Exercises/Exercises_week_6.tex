@@ -10,6 +10,9 @@
 \usepackage[normalem]{ulem}
 \usepackage{listings}
 \usepackage[lastexercise]{exercise}
+\usepackage{enumitem}
+\graphicspath{ {./img/} }
+
 \begin{document}
 
 \setlength{\parindent}{0cm}
@@ -18,43 +21,95 @@
 
 \renewcommand{\ExePartHeader}{\medskip\textbf{\ExePartName\ExePartHeaderNB\ExePartHeaderTitle\medskip}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title{Exercises -- Week 6: File I/O and program arguments}
+\title{Exercises -- Week 6: Importing Python Files}
 \subsubsection*{EMAT10007 -- Introduction to Computer Programming}
-\subsection*{Exercises -- Week 6: File I/O and program arguments}
+\subsection*{\Large Exercises -- Week 6. Importing Python Files}
 
-\subsection*{Part 1. File I/O}
 
-File input and output (I/O) is an important part of any program, as it allows you to load data into your program and to export data from your program.
 
-\begin{Exercise}[title= File input and output]\\
-The goal of this exercise is to write a program that reads in a high-score list and then asks the user to enter a new score. Your program should add this score to the list and then reorganise the list such that the scores are in descending order. Then, your program should save the new high-score list to the same file.
-\Question {Start by creating a program which reads a list of high-scores from a file called {\tt HighScoreList.txt}.
- Print out the list of high-scores in the following format:\\
-		{\tt Name: Jim Score: 108}}
-\Question{ Then ask the user to {\tt input} a new name and score (try to accept both arguments in one line).}
-\Question{ Place the new user and their score in the high-score list, do one of the following two actions:
-		\begin{enumerate}
-			\item If the new score is the lowest score in the high-score list, then simply \textbf{append} it to the {\tt HighScoreList.txt} file.
-			\item If the new score is not the lowest in the list, then sort the list of high-scores into descending order, so that it is once again correctly ordered. Then \textbf{overwrite} the old high-score list with the new high-score list.\\
-			That way, when you run your program multiple times, your program will always present you with the most up-to-date high-score list.
-		\end{enumerate}
-	If the user does not enter anything ({\tt input(...) == ""}) then exit the program.}
+\subsection*{\Large 6.1 Packages and Modules}
+
+\subsection*{Essential Questions}
+
+\begin{Exercise}[title= Importing a Python Module]
+
+\begin{verbatim}
+                                geometry/
+                                |
+                                |---- __init__.py
+                                |---- main.py
+                                |---- volumes.py
+\end{verbatim}
+
+
+
+\Question{Create the file system shown above. Leave all .py files empty to begin with.}
+\Question{In file volumes.py, write two functions, {\tt sphere} and {\tt cube}. Each function should take one input argument and return the volume of the shape in the name of the function. Units of the output should match the input (i.e. input in cm, output in cm$^3$). 
+\Question{Edit the content of main.py so that when it is run, it outputs the volume of a sphere of radius 3 m}.
+\Question{Is there a way to achieve the same operation, using shorter code in main.py?}.
+\Qeustion{Add another file, areas.py within the `geometry' folder. In areas.py, write two functions, {\tt sphere} and {\tt cube}. Each function should take one input argument and return the surface area of the shape in the name of the function. Units of the output should match the input (i.e. input in cm, output in cm$^2$).}
+\Question{Edit the content of main.py so that a variable {\tt A = 5} is created and the area and volume of a sphere of radius {\tt A} and a cube of side length {\tt A = 5} are printed.}
 \end{Exercise}
 
-\subsection*{Part 2. Command line}
+\subsection*{Advanced Questions}
 
-\begin{Exercise}[title=Program parameters (a.k.a\ command-line arguments)]\\
-Using the same
-\Question{ Modify the program above to accept program {\tt parameters} of the following format:\\
-		{\tt -a [\emph{length}]}\\
-		{\tt -d [\emph{length}]}\\
-		where {\tt -a} here is short for ``ascending'' and {\tt -d} for ``descending''.}
-\Question{ You should then sort your list depending on \textbf{ascending} or \textbf{descending} order. The second arguments in the above examples are \textbf{optional}, and should be integer values which specify the \emph{maximum number of scores to keep in the list}.\\
-If there are fewer scores than {\tt [\emph{length}]}, then you should do nothing.
-Otherwise, you should remove scores from the bottom until your high-score list contains {\tt [\emph{length}]} high-scores.\\
-		\textbf{Note:} You should only accept sensible values of these arguments, e.g., {\tt [\emph{length}]} should not be negative, or 0.
- Any other argument values should be ignored.}
+\begin{enumerate}[label=(\Alph*)]
+    
+    \item Add your another .py file to the directory and create a Python module of your choosing (it does not need to be related to geometry). 
+    \item Practise different ways of calling variables, functions and classes from within main.py
+    
+\end{enumerate}
+
+\pagebreak
+
+\subsection*{\Large 6.2 Importing from other locations}
+
+\subsection*{Essential Questions}
+
+\begin{verbatim}
+
+                        cubes/
+                        |
+                        |---- __init__.py
+                        |---- cube.py
+                        |---- shapes/
+                                |
+                                |---- main.py
+                                |---- spheres/
+                                        |
+                                        |---- __init__.py
+                                        |---- sphere.py
+                                        
+\end{verbatim}
+
+\Question{Create the file system shown above. Leave all .py files empty to begin with.}
+
+\begin{Exercise}[title= Importing from downstream locations]
+    
+    \Question{In file sphere.py, create a class {\tt Sphere} that takes one input argument, the radius. 
+    \Question{Give the class two methods that return the surface area and volume of the sphere respectively.}
+    \Question{Edit main.py to print the surface area of a sphere of radius 5.}
+    \Question{Create a sub-directory within `spheres' and a file within it, dimensions.py.}
+    \Question{Create a variables within dimensions.py, {\tt radius} and give it a numerical values.} 
+    \Question{Import the entire contents of dimensions.py to main.py and use {\tt radius} as the input argument to generate a {\tt Sphere} object.} 
+    
+\end{Exercise}
+
+\begin{Exercise}[title=Importing from upstream locations]\\
+
+\Question{In file cube.py, create a class {\tt Cube} that takes one input argument, the side length with a default value of 1. 
+    \Question{Give the class two methods that return the surface area and volume of the cube respectively.}
+    \Question{Edit \_\_init\_\_.py in the `cubes' directory so that cube.py is automatically imported when `cubes' is imported.}
+    \Question{Edit main.py to print the surface area of a cube of side 10.}
 
 \end{Exercise}
+
+\subsection*{Advanced Questions}
+
+\begin{enumerate}[label=(\Alph*)]
+    
+    \item Create another sub-directory within the `shapes' sub-directory and create your own python package. Create Python file(s) within the directory and practise calling them from within main.py
+    
+\end{enumerate}
 
 \end{document}

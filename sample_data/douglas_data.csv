@@ -1,4 +1,4 @@
-sample, moisture, knotratio, treering, Edyn, density, beamheight, Estat, bstrength
+sample, moisture, knotratio, treering, Edyn, density, beamheight, Estat, bend_strength
 units,%,-,mm,N/mm2,kg/m3,cm,N/mm2,N/mm2
 DO1,13.3,0.04,3,14053,675,101,15452,58.4
 DO2,12,0.16,2.5,20611,474,100,17272,74.35

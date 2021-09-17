@@ -72,16 +72,18 @@
 
 \subsection*{Essential Questions}
 
+
+
 \begin{Exercise}[title=Numbers and Arithmetic Operators]  \label{Ex:Numbers}
 
 \ExeText{Python can be used as a calculator. You can input operations, and store the results of operations as variables for use in additional calculations.}
 	\Question{Create two variables, {\tt A} and {\tt B}, and assign a numerical value of your choice to each of these variables.}
 	\Question{Calculate the sum of {\tt A} and {\tt B} and print the result in the Console window in Spyder.}
-	\Question{Calculate the product of {\tt A} and {\tt B} and print the result.}
-	\Question{Calculate $\frac{A+B}{3}$ (Hint: Python follows the same ordering of mathematical operations as any other calculator).
+	\Question{Calculate the product of {\tt A} and {\tt B} and store the result as a new variable (avoid variable names  {\tt C} and  {\tt D} as we will use these later in the exercises).}
+	\Question{Overwrite the value of the variable you just created with the value $\frac{A+B}{3}$. \\Hint: Python follows the same ordering of mathematical operations as any other calculator.
 	\Question{Find the remainder when {\tt A} is divided by {\tt B} and print the result.}.
-    \Question{Write a program to output that stores the radius of a sphere as a variable and outputs the volume of the sphere.}
-    \Question{Create 3 variables for the length, width and height of a cuboid. Write a program to output the volume of the cuboid.}
+    \Question{Write a program that stores the radius of a sphere as a variable, then finds the volume of the sphere as a new variable.}\label{Ex:Sphere}
+    \Question{In a single line of code, create 3 variables for the length, width and height of a cuboid. Then, write a program to store the volume of the cuboid as a new variable.}\label{Ex:Cuboid}
     \end{Exercise}
 
 \begin{Exercise}[title=Strings] \label{Ex:Strings}
@@ -108,8 +110,8 @@ Strings are text data.
 		
 
 
-    \Question{Create two variables {\tt C} and  {\tt D}.}
-	\Question{Assign the value {\tt `Hello '} to {\tt C} and  the value {\tt `World'} to {\tt D}. Use an arithmetic operator on these variables to print the output {\tt `Hello World'}}
+    \Question{Create two variables {\tt C} and  {\tt D}. Assign the value {\tt `Hello'} to {\tt C} and  the value {\tt `World'} to {\tt D}. }
+    \Question{ Use arithmetic operators on these variables to create a new string variable with the value: {\tt `Hello World'}}
 	\Question{Print the third letter of {\tt C}.}
 	\Question{Print the last three letters of {\tt D}}
 
@@ -130,13 +132,12 @@ Strings are text data.
 
 \begin{Exercise}[title=Comparison Operators]
 
-\ExeText{Comparison Operators output a {\tt True} or {\tt False} (Boolean) value.}
-
+\ExeText{Comparison Operators output a {\tt True} or {\tt False} (Boolean) value.\\ Use variables {\tt A}, {\tt B}, {\tt C} and {\tt D} defined in Exercises \ref{Ex:Numbers} and \ref{Ex:Strings} for these exercises.}
 
 	\Question{Write a line of code that prints {\tt True} in the Console window in Spyder if variable {\tt A} is greater than {\tt B}}.
 	\Question{Write a line of code that prints {\tt True} if the {\tt type} of {\tt A} is the same as {\tt B}. Can you change the value of {\tt A} and/or {\tt B} to output a different result?}
 	\Question{Write a line of code that prints {\tt True} if the first letter of {\tt C} is the same as the first letter of {\tt D}. Change the value of {\tt C} and {\tt D} to check your code works as expected}.
-	\Question{Write a program that compares the volume of a cuboid and the volume of a sphere (Exercise \ref{Ex:Numbers}) and outputs a message telling the user which is larger e.g.}
+	\Question{Write a program that compares the volume of a sphere found in Exercise \ref{Ex:Numbers}.\ref{Ex:Sphere} the volume of the cuboid found in Exercise \ref{Ex:Numbers}.\ref{Ex:Cuboid} and outputs a message telling the user which is larger e.g.}
 	
 	        \vspace{0.5em}
     		{\tt `The volume of the sphere is greater: True'}
@@ -153,7 +154,10 @@ Strings are text data.
 
 \begin{Exercise}[title=Logical Operators]
 
+\ExeText{Logical Operators output a {\tt True} or {\tt False} (Boolean) value.\\ Use variables {\tt A}, {\tt B} Exercise \ref{Ex:Numbers} for these exercises.}
+
 \ExeText{}
+	
 	\Question{Write a line of code that prints {\tt True} in the Console window in Spyder if both variables {\tt A} {\bf and} {\tt B} are even.}
 	\Question{Write a line of code that prints {\tt True} if either variable {\tt A} {\bf or} {\tt B} is even.} 
 	\Question{Create three variables in a single line of code. Each variable should be the name of a student and the value of the variable should be their score in an imaginary assignment e.g {\tt Valentina = 75}. The pass mark for the assignment is 40. Write a program that outputs {\tt True} if any of the three students passed the assignment.}
@@ -163,7 +167,7 @@ Strings are text data.
 
 \begin{enumerate}[label=(\Alph*)]
 
-    \item Write a program that sorts animals into three categories: herbivores, carnivores and omnivores based on whether the animal eats plants and/or eats meat.
+    \item Write a program that sorts animals into three categories: herbivores, carnivores and omnivores based on two variables that indicate if the animal eats plants and/or eats meat.
     
     \item Create a variable with a numerical value. Write a program that prints {\tt True} if the number is a square number or perfect square (the product of some integer with itself).
     

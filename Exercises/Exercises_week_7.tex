@@ -26,6 +26,7 @@
 \subsubsection*{EMAT10007 -- Introduction to Computer Programming}
 \subsection*{\Large Exercises -- Week 7. Reading and Writing Files}
 
+
 \subsection*{\Large 7.1 Reading and Writing Files}
 
 \subsection*{Essential Questions}
@@ -56,16 +57,15 @@
 
 \begin{Exercise}[title= Reading files] \label{Ex:Variables}
 	\Question{Write a Python program to read the contents of the table you have just created in samples.txt and print its contents to the console in Spyder.}
-	\Question{Print the third row of the table (excluding the headings).}
-	\Question{Print the numerical data in the column Mass as a list of {\tt float} values, shown in grams (g).}
+	\Question{We can convert the iterable file object returned by {\tt open} as a list of lists by casting using {\tt list(<object\_name>)}.\\ Use this method and then print the third row of the table (excluding the headings).}
+	\Question{Print the numerical data in the column Mass as a list of {\tt float} values, shown in grams (g) \\ {\bf Hint:} Exclude the column heading from the list. Convert string data to numerical data.}
+	
 \end{Exercise}
 
 
 \begin{Exercise}[title= Reading and writing files] \label{Ex:Variables}
-	\Question{Write a program that edits the Mass of sample B to be 0.465 kg}
-	\Question{Write a program that edit the table so that all Mass data is rounded to 2 significant figures (the nearest 50g)}
-    \Question{Edit the table so that the column headings are in upper case letters. 
-    
+
+    \Question{Edit the table so that the column headings are in upper case letters. \\
     {\bf Hint:} You can do this manually or use Python's built-in {\tt upper} method (example below) which can be used to convert string data to uppercase letters (there is an equivalent {\tt lower} method for converting to lower case).}
     
     \vspace{0.5 em}
@@ -78,6 +78,16 @@
     {\bf $>$$>$ {\tt HELLO}}
     
     \vspace{0.5 em}
+    
+    
+    \Question{ Write a program that:
+    \begin{itemize}
+        \item opens the file sample\_data/price\_per\_item.csv and prints the contents to display the data
+        \item adds another line (you can make up a new entry to the list of foods and prices).
+        \item prints the new contents to confirm the new line has been added
+    \end{itemize} }
+    
+
 
 
 \end{Exercise}
@@ -85,28 +95,30 @@
 \subsection*{Advanced Questions}
 
 \begin{enumerate}[label=(\Alph*)]
-    
-    \item The Python functions {\tt argmax} and {\tt argmin} return the {\it element number} of the maximum and minimum values in a list, respectively. 
 
-    \vspace{0.5 em}
-    \begin{verbatim}
-    nums = [8, 1, 2] 
-    txt = [`a', `b', `c']
-    element = nums.argmax() # max value is element 0
-    letter = txt[element]   # txt[0] 
-    print(letter)
-    \end{verbatim}
-    {\bf $>$$>$ {\tt 'a'}}
+
+    \item Write a program that edits the Mass of sample B to be 0.485 kg
     
-    Write a program that prints the name (letter) of the sample with the lowest mass in the table. 
+    \item Write a program that edits the table saved in samples.txt so that all Mass data is rounded to 2 decimal places (the nearest 10g)\\{\bf Hint:} Use the built-in {\tt round} function.
     
     
-    \item Write a program that:
-    \begin{itemize}
-        \item opens the file sample\_data/price\_per\_item.csv
-        \item adds another line (you can make up a new entry to the list of foods and prices).
-        \item prints the new contents to confirm the new line has been added
-    \end{itemize} 
+    
+    % \item The Python functions {\tt np.argmax} and {\tt np.argmin} return the {\it element number} of the maximum and minimum values in a list, respectively. 
+
+    % \vspace{0.5 em}
+    % \begin{verbatim}
+    % nums = np.array([8, 1, 2]) 
+    % txt = np.array([`a', `b', `c'])
+    % element = nums.argmax() # max value is element 0
+    % letter = txt[element]   # txt[0] 
+    % print(letter)
+    % \end{verbatim}
+    % {\bf $>$$>$ {\tt `a'}}
+    
+    % Write a program that prints the name (letter) of the sample with the lowest mass in the table. 
+    
+    
+
         
     
 

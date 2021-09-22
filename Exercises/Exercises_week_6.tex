@@ -45,10 +45,10 @@
 
 \Question{Create the file system shown above. Leave all .py files empty to begin with.}
 \Question{In file volumes.py, write two functions, {\tt sphere} and {\tt cube}. Each function should take one input argument and return the volume of the shape in the name of the function. Units of the output should match the input (i.e. input in cm, output in cm$^3$). 
-\Question{Edit the content of main.py so that when it is run, it outputs the volume of a sphere of radius 3 m}.
+\Question{Edit the content of main.py so that when it is run, it prints the volume of a sphere of radius 3 m}.
 \Question{Is there a way to achieve the same operation, using shorter code in main.py?}.
-\Qeustion{Add another file, areas.py within the `geometry' folder. In areas.py, write two functions, {\tt sphere} and {\tt cube}. Each function should take one input argument and return the surface area of the shape in the name of the function. Units of the output should match the input (i.e. input in cm, output in cm$^2$).}
-\Question{Edit the content of main.py so that a variable {\tt A = 5} is created and the area and volume of a sphere of radius {\tt A} and a cube of side length {\tt A = 5} are printed.}
+\Question{Add another file, areas.py within the `geometry' folder. In areas.py, write two functions, {\tt sphere} and {\tt cube}. Each function should take one input argument and return the surface area of the shape in the name of the function. Units of the output should match the input (i.e. input in cm, output in cm$^2$).}
+\Question{Edit the content of main.py so that a variable {\tt A = 5 m} is created and the area and volume of a sphere of radius {\tt A} and a cube of side length {\tt A = 5 m} are printed.}
 \end{Exercise}
 
 \subsection*{Advanced Questions}
@@ -88,19 +88,22 @@
     
     \Question{In file sphere.py, create a class {\tt Sphere} that takes one input argument, the radius. 
     \Question{Give the class two methods that return the surface area and volume of the sphere respectively.}
-    \Question{Edit main.py to print the surface area of a sphere of radius 5.}
+    \Question{Edit main.py to print the surface area of a sphere of radius 5 m. \\ {\bf Hint: } There are a number of ways to deal with the need for constants e.g. pi \\ The most reliable way to ensure a constant value is used is to import it from: 
+    \begin{itemize}
+        \item  an external package e.g. {\tt math} (for well known constants like pi)
+        \item a module created by you to store for program-specific constants - we'll try this out in the next question...
+    \end{itemize}
     \Question{Create a sub-directory within `spheres' and a file within it, dimensions.py.}
-    \Question{Create a variables within dimensions.py, {\tt radius} and give it a numerical values.} 
+    \Question{Create a variable within dimensions.py, {\tt radius} and give it a numerical value.} 
     \Question{Import the entire contents of dimensions.py to main.py and use {\tt radius} as the input argument to generate a {\tt Sphere} object.} 
     
 \end{Exercise}
 
-\begin{Exercise}[title=Importing from upstream locations]\\
+\begin{Exercise}[title=Importing from upstream locations]
 
-\Question{In file cube.py, create a class {\tt Cube} that takes one input argument, the side length with a default value of 1. 
+    \Question{In file cube.py, create a class {\tt Cube} that takes one input argument, the side length with a default value of 1 m.}
     \Question{Give the class two methods that return the surface area and volume of the cube respectively.}
-    \Question{Edit \_\_init\_\_.py in the `cubes' directory so that cube.py is automatically imported when `cubes' is imported.}
-    \Question{Edit main.py to print the surface area of a cube of side 10.}
+    \Question{Edit main.py to print the surface area of a cube of side 10 cm.}
 
 \end{Exercise}
 

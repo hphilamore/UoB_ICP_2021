@@ -51,7 +51,7 @@
     
 	\Question{Now alter your graph so it has the following} 
 	\begin{itemize}
-	    \item title: {\tt Plot of y vs x}
+	    \item title: {\tt Plot of y,f vs x}
 	    \item x axis label: {\tt x}
 	    \item legend indicating which line is {\tt y} data and which is {\tt f}
 	    
@@ -68,12 +68,12 @@
 	\Question{Create a function named {\tt diceRolls} that takes the number of 6-sided dice rolls, {\tt n} as an input argument and return the results of the dice rolls. \\
 	\textbf{Hint:} Use the numpy {\tt np.random.randint()} function.}
 	
-	\Question{Modify the {\tt diceRolls} function so it saves the results in a file diceRolls.csv, in the same folder as your code.\\
-	\textbf{Note:} Remember to add {\tt import csv} at the start of your code.}
+	\Question{Modify the {\tt diceRolls} function so it saves the results in a file diceRolls.csv.\\
+	\textbf{Hint:} Remember to import any modules you need at the start of your code.}
 
-	\Question{Now import the dice rolls from your diceRolls.csv file and save it as a numpy array named {\tt data}. Print the values of {\tt data}.}
-	\Question{Visualise that data. First, try using {\tt plt.plot()}. This shows the results of each dice roll, but is slightly confusing to look at. }
-	\Question{Now, let's try to represent the distribution of dice rolls using a histogram. Use {\tt plt.hist()}  and {\tt plt.show()} to visualise the histogram. }
+	\Question{Call the {\tt diceRolls} function, choosing a value for {\tt n}. Then import the dice rolls from your diceRolls.csv file and save it as a numpy array, {\tt data}. Print {\tt data}.}
+	\Question{Visualise the data in the {\tt data} array. First, try using {\tt plt.plot()}. This shows the results of each dice roll, but is slightly confusing to look at. }
+	\Question{Now, let's try to represent the distribution of dice rolls using a histogram. Use {\tt plt.hist()}  and {\tt plt.show()} to visualise the histogram. \\ {\bf Hint:} Try using the different optional arguments (e.g. {\tt align}) to change the appearance of the plot  (https://matplotlib.org/stable/api/\_as\_gen/matplotlib.pyplot.hist.html)}
 	\Question{Add a title and x and y axis labels to your histogram. Try running your code with n = 10, 100, 1,000 and 10,000 to see if/how the distribution of dice rolls changes.}
 	
 	\Question{Save your plot as a .png file}
@@ -82,13 +82,18 @@
 
 \subsection*{Advanced Questions}
 
-The file `sample\_data/douglas\_data.csv` contains a data set of recorded parameters for a sample of wooden beams.
+The file `sample\_data/douglas\_data.csv` contains a data set of recorded parameters for a sample of wooden beams. Open the file using a spreadsheet program or text editor and look at the data. Which rows and columns contain non-numeric data?
 
 \begin{enumerate}[label=(\Alph*)]
     
-    \item  Open the file and look at the data. What is the delimiter used? Which rows and columns contain non-numeric data? \\
-    Import the data using {\tt np.loadtxt}, setting the data type to {\tt float}. \\
-    Exclude the rows and columns containing non-numeric data.\\
+    \item   \\
+    Import the data from `sample\_data/douglas\_data.csv`:
+    \begin{itemize}
+        \item using {\tt np.loadtxt}
+        \item using using the default data type ({\tt float})
+        \item specifying the correct delimiter
+        \item excluding the rows and columns containing non-numeric data.
+    \end{itemize}
     {\bf Note:} The use of scientific notation can be suppressed by:
     \begin{verbatim}
         np.set_printoptions(suppress=True)
@@ -99,8 +104,8 @@ The file `sample\_data/douglas\_data.csv` contains a data set of recorded parame
     Convert the data in this column to units $\mathrm{N/m}^2$.\\
 
     \item The area of each beam in the data set is 0.01 $\mathrm{m^2}$.\\
-    The density of each beam is given in the fifth column. \\
-    The height of each beam is given in the sixth column. \\
+    The density of each beam (kg/m$^3$) is given in the fifth column. \\
+    The height of each beam (cm) is given in the sixth column. \\
     Add a new column to the array that contains mass of each beam (kg) using:
 
     mass $=$ area $\times$ height $\times$ density
@@ -131,13 +136,23 @@ The file `sample\_data/douglas\_data.csv` contains a data set of recorded parame
 
 The file `sample\_data/douglas\_data.csv` contains a data set of recorded parameters for a sample of wooden beams.
 
-\begin{enumerate}
-    \item Import the data using {\tt np.loadtxt}, setting the data type to {\tt float}. \\
-          Exclude the rows and columns containing non-numeric data.
+\begin{enumerate}[label=(\Alph*)]
+    \item Import the data from `sample\_data/douglas\_data.csv`:
+    \begin{itemize}
+        \item using {\tt np.loadtxt}
+        \item using using the default data type ({\tt float})
+        \item specifying the correct delimiter
+        \item excluding the rows and columns containing non-numeric data.
+    \end{itemize}
+    {\bf Note:} The use of scientific notation can be suppressed by:
+    \begin{verbatim}
+        np.set_printoptions(suppress=True)
+    \end{verbatim}
+    
     \item Plot a scatter graph of bend strength against knot ratio. 
-    \item Can you think of a mathematical function that looks like it could fit this data? Define the mathematical function as a Python function and use {\tt curve\_fit} to fit a function to the data. 
+    \item Can you think of a mathematical function that looks like it could fit this data? Define the mathematical function as a Python function and use {\tt curve\_fit} to fit a function to the data.\\  {\bf Hint:} Remember to import {\tt curve\_fit} from {\tt scipy.optimize}.  
     \item Use the Python function you defined to generate some fitted data. 
-    \item Plot the fitted data as a line plot on the same axes as the raw data.
+    \item Plot the fitted data as a line plot on the same axes as the raw data. Label the axes.
     \item Show the equation of the fitted line in the figure legend.
     \item What is the root mean square error (RMSE) of the fitted function? 
 \end{enumerate}

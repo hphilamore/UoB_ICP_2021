@@ -49,7 +49,7 @@
     \end{tabular}
     \end{center}
 	
-	{\bf Hint:} Remember to close the file!}
+	{\bf Hint:} Remember to close the file!} \label{Q:Table}
 	
 	\Question{Add the new entries: (Sample F: Mass = 0.505 kg, Sample G: Mass = 0.535 kg) to the table in samples.txt.}
 
@@ -129,38 +129,24 @@
 
 \subsection*{Essential Questions}
 
-\begin{Exercise}[title= Writing csv files]
+\begin{Exercise}[title= Writing csv files]\label{Ex:Writing_csv}
 
 \ExeText{}
 
-	\Question{Write the table in Exercise \ref{Ex:WritingFiles} to a csv file, samples.csv.}
-	\Question{Add a new line to the table: Sample G: Mass = 0.475 kg}
-	\Question{Add a column to the table, that contains the volume of each sample in cm$^3$: A = 336, B = 231, C = 350, D = 272, E = 300, F = 312, G = 255.}
-    \Question{Add a column to the table, that contains the density of each sample in kg/m$^3$} 
+	\Question{Use the {\tt csv} module to write the table in Exercise \ref{Ex:WritingFiles}.\ref{Q:Table} to a csv file, samples.csv.}
+	\Question{Add the new entries: (Sample F: Mass = 0.505 kg, Sample G: Mass = 0.535 kg) to the table in samples.csv.}
+	
 
 \end{Exercise}
 
 
-\begin{Exercise}[title= Reading csv files]
+\begin{Exercise}[title= Reading csv files]\label{Ex:Reading_csv}
 
 \ExeText{}
 
 	\Question{Read the data in sample\_data/douglas\_data.csv and print it to the Console in Spyder.}
-	\Question{Add a new line to the table: Sample G: Mass = 0.475 kg}
 	\Question{Print the maximum value ({\bf Hint:} Python built in {\tt max} function) of  {\tt density} in the data set.}
-    \Question{Print the mean value of  {\tt moisture \%} in the data set.} 
-    \Question{Iterate over the files (See lecture slides: {\bf Iterating multiple files}) in folder `sample\_data/a\_folder' and print the contents.}
-
-
-\end{Exercise}
-
-\subsection*{Advanced Questions}
-
-\begin{enumerate}[label=(\Alph*)]
-    
-    \item Read the data in sample.csv. 
-    
-    The Python function {\tt sorted()} takes an iterable (e.g. list, string) as an argument and returns it as a sorted list. The argument {\tt reverse} (default value {\tt False} determines whether the items are sorted in ascending or descending (reverse) order. 
+	\Question{The Python function {\tt sorted()} takes an iterable (e.g. list, string) as an argument and returns it as a sorted list. The argument {\tt reverse} (default value {\tt False} determines whether the items are sorted in ascending or descending (reverse) order. 
     \vspace{0.5 em}
     \begin{verbatim}
     nums = [8, 1, 2]
@@ -168,7 +154,25 @@
     \end{verbatim}
     {\bf $>$$>$ {\tt [8, 2, 1]}}
     
-    Print the values in the Mass column of the imported data in  ascending order. 
+    Read the data in sample.csv (created in Exercise \ref{Ex:Writing_csv}). Print the values in the Mass column of the imported data in  ascending order. }
+    \Question{Iterate over the files (See lecture slides: {\bf Iterating multiple files}) in folder `sample\_data/a\_folder' and print the file contents. \\{\bf Hint:} Remeber, the function {\tt open} takes the {\it full file path} as the first argument. To join locations as a path you can use {\tt `os.path.join`}
+
+\end{Exercise}
+
+
+
+
+
+\subsection*{Advanced Questions: Reading and writing a csv file}
+
+
+
+
+%\begin{Exercise}[title= Reading and writing csv files]\label{Ex:Reading_Writing_csv}
+
+\subsection*{Advanced Questions}
+
+\begin{enumerate}[label=(\Alph*)]
     
     \item {\tt sorted()} can be also used to sort one list using the values in another list by using {\tt zip} to group the two lists element wise.
     \vspace{0.5 em}
@@ -177,18 +181,35 @@
     txt = [`a', `b', `c']
     lists = zip(nums, text) 
     s_lists = sorted(lists) # [(1, `b'), (2, `c'), (8, `a')]
-    s_nums[i[0] for i in s_lists] # [1, 2, 3]
-    s_txt[i[1] for i in s_lists] # [`b', `c', `a']
+    s_nums = [i[0] for i in s_lists] # [1, 2, 3]
+    s_txt = [i[1] for i in s_lists] # [`b', `c', `a']
     \end{verbatim}
 
     Using this example, write a program that:
     \begin{itemize}
         \item asks the user's for a player's name and score.
-        \item add them to the high score table in sample\_data/scores.csv so that the scores remain in descending order.
+        \item add them to the high score table in sample\_data/scores.txt so that the scores remain in descending order.
         \item prints a message to the Console to tell the user if the new score is the highest in the table e.g. {\tt `[Player name] got a new high score of [score]!'} 
-    \end{itemize} 
+    \end{itemize}
     
-    \item Use the {\tt csv} module to write a Python dictionary to a .csv file to generate the table of samples and masses in Exercise \ref{Ex:WritingFiles}.  
+    {\bf Hint} Remember to open the file using a mode specifier that lets you read {\it and} write e.g. `'r+`.
+    
+    {\bf Hint} Remember, numerical data is exported fro ma  csv file as string data. 
+    
+    {\bf Hint} Remember that after reading, the position is at the end of the file. To return to the beginning of the file to overwrite its contents use `seek(0)` or `truncate()`
+    
+    \item  Imagine you have not seen the contents of the file samples.csv (created in Exercise \ref{Ex:Writing_csv}). The volume of each sample in cm$^3$ is: A = 336, B = 231, C = 350, D = 272, E = 300, F = 312, G = 255. Write a program that:
+    {\begin{itemize}
+        \item reads the contents of the samples.csv file .
+        \item finds the density of each sample in kg/m$^3$.
+        \item writes two new columns to the table: volume(cm3) and density(kg/m3)
+    \end{itemize}} 
+    
+{\bf Hint} Remember to open the file using a mode specifier that lets you read {\it and} write e.g. `'r+`.
+    
+    {\bf Hint} Remember, numerical data is exported fro ma  csv file as string data. 
+    
+    {\bf Hint} Remember that after reading, the position is at the end of the file. To return to the beginning of the file to overwrite its contents use `seek(0)` or `truncate()`
     
 \end{enumerate}
 

@@ -1,0 +1,177 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header
+\documentclass[11pt]{report}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{nicefrac}
+\usepackage[lastexercise]{exercise}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsmath}
+
+
+\usepackage{minted}
+\makeatletter
+\AtBeginEnvironment{minted}{\dontdofcolorbox}
+\def\dontdofcolorbox{\renewcommand\fcolorbox[4][]{##4}}
+\makeatother
+
+
+\setlength{\parindent}{0cm}
+
+\renewcommand{\ExerciseHeader}{\large\textbf{\ExerciseName~\ExerciseHeaderNB} - \textbf{\ExerciseTitle}\medskip}
+
+\renewcommand{\ExePartHeader}{\medskip\textbf{\ExePartName\ExePartHeaderNB\ExePartHeaderTitle\medskip}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Introduction to Computer Programming}
+\subsection*{\Large Exercises -- Week 5. Classes}
+
+\subsection*{\Large Part 1. Classes in Python}
+
+\begin{Exercise}[title=Defining classes (Essential)]
+
+  The goal of this exercise is to write a program that creates a shopping list and then prints out all of the items and the total price.
+  
+  \Question{Write a class called {\tt Item} that has a constructor
+    \begin{minted}{python}
+      __init__(self)
+    \end{minted}
+    that prints ``This is an item". From your main program, create an object of class Item called Apple. Run the program.}
+  
+  \Question{Change the constructor to include three additional arguments:
+
+    \begin{minted}{python}
+      __init__(self, Description, Number, UnitPrice)
+    \end{minted}
+
+    Use these arguments to create three new class attributes.
+    
+    }
+  
+  \Question{Change the print statement to print ``Created a new item: {\tt X}'', where {\tt X} is the item description.}
+
+  \Question{From your main program, create an object of class Item called Apple with parameters ``Apple", 1, and 0.5. Call {\tt print(Apple.Description,Apple.Number,Apple.UnitPrice)} to print out the information.}
+  
+  \Question{ Include a function in your class called {\tt PrintItemInfo(self)} that prints all the information about the item. Call {\tt Apple.PrintItemInfo()} from the main program.}
+  
+  \Question{Override the built-in \verb|__str__()| function so that printing the instance of {\tt item} prints the name of that item. Then, create a list called {\tt ShoppingList}, add the Apple, and two other items to the list. Loop through the list and print out each item using the overridden \verb|__str__()| method.}
+  
+  \Question{ Write a loop in the main program to go over all items in {\tt ShoppingList}, print out the item information and sum the total price (the price for one item is {\tt Number*UnitPrice}). Print out the total price at the end.}
+
+\end{Exercise}
+  
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+\subsection*{\Large Part 2. Inheritance}
+
+\begin{Exercise}[title=Deriving a class with inheritance (Essential)]
+
+\Question{Add a new class called {\tt SpecialItem}
+  which \emph{inherits} from the {\tt Item} class.
+  The class signature should look like the following:
+  \begin{minted}{python}
+    def __init__(self, Description, Number, UnitPrice, SpecialInfo):
+  \end{minted}
+  and should call the \verb|__init__()| function of the Item class passing in the {\tt Description}, {\tt Number}, and {\tt UnitPrice} arguments, but storing the new variable {\tt SpecialInfo} as an attribute of the new class.}
+
+\Question{As we did in the {\tt Item} class, override the built in \verb|__str__()| function to print the item description, but this time have it also print out the special information via {\tt self.SpecialInfo}.}
+
+\Question{Override the {\tt PrintItemInfo()} method of the {\tt Item} class
+  so that the special information is also printed.}
+
+\Question{Add a special item to your shopping list that requires instructions via the {\tt SpecialInfo} argument, such as Paracetamol, which has the following special information: take two tablets every 6 hours. Check that {\tt print(Paracetamol)} and {\tt Paracetamol.PrintItemInfo()} work as expected. Verify that
+  {\tt Apple.PrintItemInfo()} works the same as before.}
+\end{Exercise}
+
+
+\subsection*{\Large Part 3. Advanced questions}
+
+\begin{Exercise}[title=A class for vectors]
+
+  The purpose of this exercise is to create a class for vectors and
+  carrying out operations on vectors. We'll consider vectors of
+  the form $\vec{v} = \langle x, y, z \rangle$.
+
+  \Question{For this exercise, we'll need some additional mathematical
+    functions that are not available in Python by default. To enable these,
+    add the line 
+    \begin{minted}{python}
+      from math import *
+    \end{minted}
+    You should now be able to compute square roots using the {\tt sqrt}
+    function. Trigonometric functions (sin, cos, tan, etc) will be
+    available now too.}
+
+  \Question{Create a class called {\tt Vector} with attributes
+    {\tt x}, {\tt y}, {\tt z}.}
+
+  \Question{Overwrite the \verb|__str__()| function so that the {\tt print()}
+    function can be used to print the vector in the form {\tt <x, y, z>}.
+    Check that this works by creating a vector $\vec{v} = \langle 1, 3, 2 \rangle$ and then calling {\tt print(v)}.}
+
+  \Question{Add a function call {\tt norm} that computes the length 
+    of a vector, defined as $|\vec{v}| = \sqrt{x^2 + y^2 + z^2}$. Compute the 
+    length of the vector $\vec{v}$.}
+
+  \Question{Overload the + operator by defining the \verb|__add()__| function
+    in the vector class.
+    Remember that addition is a binary operation, so the \verb|__add__()|
+    function requires two arguments: {\tt self} and {\tt other}. 
+    Define a second vector $\vec{w} = \langle 5, 0, 1 \rangle$ and
+    check that $\vec{v} + \vec{w} = \langle 6, 3, 3 \rangle$.}
+
+  \Question{Now we'll overload the * operator so that it computes the
+    dot product of two vectors. Recall that if $\vec{v} = \langle x,y,z \rangle$
+    and $\vec{w} = \langle a, b, c \rangle$ then 
+    $\vec{v}.\vec{w} = ax + by + cz$. The * operator can be overloaded by
+    defining the
+    \verb|__mul__()| function in the vector class.}
+
+  \Question{Use these methods and operations to compute the angle between
+    the vectors $\vec{v}$ and $\vec{w}$. Recall that the angle $\theta$
+    between two vectors is defined by
+    \begin{align*}
+      \theta = \arccos\left(\frac{\vec{v}.\vec{w}}{|\vec{v}| |\vec{w}|}\right).
+    \end{align*}
+    The function $\arccos$ is defined in Python as {\tt acos}.}
+
+  \Question{(Very advanced) Let's suppose that we want to multiply
+    a vector $\vec{v} = \langle x, y, z \rangle$ by a float $f$
+    such that $f \vec{v} = \vec{v} f = \langle fx, fy, fz \rangle$. This can also be done
+    by overloading the * operator, but there are some subtleties. One issue
+    is that we have already defined * using the \verb|__mul__()| function
+    in Question 6 and this assumes the * operation is being applied to
+    two vectors. To overcome this issue, redefine the \verb|__mul__()|
+    function and use an {\tt if} statement to determine which operation to
+    carry out based on the type of {\tt other}. Check that this works by
+    computing {\tt v * w} and {\tt v * 1.0}.
+    \\[1em]
+    Now try to compute {\tt 1.0 * v}. You'll notice an error occurs.
+    This is because the order of arguments matters when calling Python
+    functions. Writing {\tt v * 1.0} is the same as calling
+    \verb|v.__mul__(1.0)|. Since we define the function \verb|__mul__|
+    in the vector class, we can provide instructions for how to
+    evaluate this function when the argument is a float. However,
+    writing {\tt 1.0 * v} calls the \verb|__mul__| function defined
+    in the float class, and Python doesn't know how to evaluate this
+    function when it is passed a vector. Thankfully, there is an easy
+    fix which avoids editing the float class. This involves defining
+    the reflected multiplication function \verb|__rmul__|
+    in the vector class, which has two arguments {\tt self} and {\tt other}.
+    When the command {\tt 1.0 * v} is executed, Python first tries to call
+    \verb|1.0.__mul__(v)| and when this fails, it will then try to run
+    \verb|v.__rmul__(1.0)|. This means that the reflected multiplication
+    function can be defined in the same way as the normal multiplication
+    function. Implement the \verb|__rmul__| function in your vector class
+    and verify that it works by calculating {\tt 1.0 * v}. 
+    }
+    
+
+\end{Exercise}
+
+\end{document}

@@ -5,8 +5,9 @@ cumulativeSum=0
 counter=0
 
 while cumulativeSum<1000000:
-    counter=counter+1
-    cumulativeSum=cumulativeSum+(counter*counter)
+    counter = counter + 1
+    cumulativeSum=cumulativeSum+(counter**2)
+    print(counter,cumulativeSum)
 print("The answer is", str(counter))
 # Note we had to use str() to convert the counter (of type int) into a string type.
 

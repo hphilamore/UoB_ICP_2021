@@ -1,0 +1,118 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header
+\documentclass[11pt]{report}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage[normalem]{ulem}
+\usepackage{listings}
+\usepackage[lastexercise]{exercise}
+\usepackage{enumitem}
+\graphicspath{ {./img/} }
+
+\begin{document}
+
+\setlength{\parindent}{0cm}
+
+\renewcommand{\ExerciseHeader}{\large\textbf{\ExerciseName~\ExerciseHeaderNB} - \textbf{\ExerciseTitle}\medskip}
+
+\renewcommand{\ExePartHeader}{\medskip\textbf{\ExePartName\ExePartHeaderNB\ExePartHeaderTitle\medskip}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Exercises -- Week 6: Importing Python Files}
+\subsubsection*{EMAT10007 -- Introduction to Computer Programming}
+\subsection*{\Large Exercises -- Week 6. Importing Python Files}
+
+
+
+\subsection*{\Large 6.1 Packages and Modules}
+
+\subsection*{Essential Questions}
+
+\begin{Exercise}[title= Importing a Python Module]
+
+\begin{verbatim}
+                                geometry/
+                                |
+                                |---- __init__.py
+                                |---- main.py
+                                |---- volumes.py
+\end{verbatim}
+
+
+
+\Question{Create the file system shown above. Leave all .py files empty to begin with.}
+\Question{In file volumes.py, write two functions, {\tt sphere} and {\tt cube}. Each function should take one input argument and return the volume of the shape in the name of the function.. 
+\Question{Edit the content of main.py so that when it is run, it prints the volume of a sphere of radius 3 m}.
+\Question{Is there a way to achieve the same operation, using shorter code in main.py?}.
+\Question{Add another file, areas.py within the `geometry' folder. In areas.py, write two functions, {\tt sphere} and {\tt cube}. Each function should take one input argument and return the surface area of the shape in the name of the function.}
+\Question{Edit the content of main.py so that a variable {\tt A = 5 m} is created and the area and volume of a sphere of radius {\tt A} and a cube of side length {\tt A = 5 m} are printed.}
+\end{Exercise}
+
+\subsection*{Advanced Questions}
+
+\begin{enumerate}[label=(\Alph*)]
+    
+    \item Create your own Python module (.py file). It does not need to be related to geometry). For example, you could store some useful equations that you have used recently in another unit as Python functions. Or you could simply take some of the functions you write in Week 4 and practise assembling them as a Python module and importing them.  
+    \item Practise different ways of calling variables, functions and classes from within main.py such as changing the namespace and importing individual functions and/or variables. 
+    
+\end{enumerate}
+
+\pagebreak
+
+\subsection*{\Large 6.2 Importing from other locations}
+
+\subsection*{Essential Questions}
+
+\begin{verbatim}
+
+                        cubes/
+                        |
+                        |---- __init__.py
+                        |---- cube.py
+                        |---- shapes/
+                                |
+                                |---- main.py
+                                |---- spheres/
+                                        |
+                                        |---- __init__.py
+                                        |---- sphere.py
+                                        
+\end{verbatim}
+
+\Question{Create the file system shown above. Leave all .py files empty to begin with.}
+
+\begin{Exercise}[title= Importing from downstream locations]
+    
+    \Question{In file sphere.py, create a class {\tt Sphere} that takes one input argument, the radius. 
+    \Question{Give the class two methods that return the surface area and volume of the sphere respectively.}
+    \Question{Edit main.py to print the surface area of a sphere of radius 5 m. \\ {\bf Hint: } There are a number of ways to deal with the need for constants e.g. pi \\ The most reliable way to ensure a constant value is used is to import it from: 
+    \begin{itemize}
+        \item  an external package e.g. {\tt math} (for well known constants like pi)
+        \item a module created by you to store for program-specific constants - we'll try this out in the next question...
+    \end{itemize}
+    \Question{Create a sub-directory within `spheres' and a file within it, dimensions.py.}
+    \Question{Create a variable within dimensions.py, {\tt radius} and give it a numerical value.} 
+    \Question{Import the entire contents of dimensions.py to main.py and use {\tt radius} as the input argument to generate a {\tt Sphere} object.} 
+    
+\end{Exercise}
+
+\begin{Exercise}[title=Importing from upstream locations]
+
+    \Question{In file cube.py, create a class {\tt Cube} that takes one input argument, the side length with a default value of 1 m.}
+    \Question{Give the class two methods that return the surface area and volume of the cube respectively.}
+    \Question{Edit main.py to print the surface area of a cube of side 10 cm.}
+
+\end{Exercise}
+
+\subsection*{Advanced Questions}
+
+\begin{enumerate}[label=(\Alph*)]
+    
+    \item Create another sub-directory within the `shapes' sub-directory and create your own python package. Create Python file(s) within the directory and practise calling them from within main.py
+    
+\end{enumerate}
+
+\end{document}

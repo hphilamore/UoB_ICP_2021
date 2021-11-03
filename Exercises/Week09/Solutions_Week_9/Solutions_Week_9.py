@@ -38,7 +38,7 @@ plt.plot(x, f, '.g-', label = "f")
 plt.xlabel("x")
 plt.title("Plot of y,f vs x")
 plt.legend()
-plt.savefig('../sample_data/my_plot.pdf')
+plt.savefig('my_plot.pdf')
 plt.show()
 
 #---------------------------------------------------------------
@@ -58,7 +58,7 @@ import numpy as np
 
 # 2
 def DiceRollsCSV(n):
-    with open('../sample_data/diceRolls.csv',mode='w', newline='') as file:
+    with open('diceRolls.csv',mode='w', newline='') as file:
         write = csv.writer(file, delimiter = ',')# setting the delimiter to comma in accordance with the csv format
         write.writerow(np.random.randint(1,7,n))
         
@@ -66,13 +66,13 @@ def DiceRollsCSV(n):
 # 3
 # Method using numpy to import 
 DiceRollsCSV(100)
-data = np.loadtxt('../sample_data/diceRolls.csv', delimiter=',')
+data = np.loadtxt('diceRolls.csv', delimiter=',')
 print(data)
 
 # OR
 
 # Method using csv module to import
-with open('../sample_data/diceRolls.csv') as csvfile:
+with open('diceRolls.csv') as csvfile:
     file = csv.reader(csvfile)
     for row in file:
         data = row
@@ -95,7 +95,7 @@ plt.hist(data,
 plt.title('distribution of dice rolls')
 plt.xlabel('value')
 plt.ylabel('frequency')
-plt.savefig('../sample_data/hist.png') # Question 7
+plt.savefig('hist.png') # Question 7
 plt.show()
 
 #---------------------------------------------------------------
@@ -105,7 +105,7 @@ plt.show()
 # A
 import numpy as np
 np.set_printoptions(suppress=True)
-A = np.loadtxt('../sample_data/douglas_data.csv', 
+A = np.loadtxt('douglas_data.csv', 
                 delimiter=',',
                 skiprows=2, 
                 usecols=(list(range(1,9)))
@@ -145,7 +145,7 @@ x_pos = np.arange(data.shape[0])
 plt.bar(x_pos, data[:,-1]);
 
 # 3. Replace x ticks with field name
-samples = np.loadtxt('../sample_data/douglas_data.csv', # import sample names 
+samples = np.loadtxt('douglas_data.csv', # import sample names 
                 delimiter=',',
                 skiprows=2, 
                 usecols=0,
@@ -215,7 +215,7 @@ from scipy.optimize import curve_fit
 
 
 np.set_printoptions(suppress=True)
-A = np.loadtxt('../sample_data/douglas_data.csv', 
+A = np.loadtxt('douglas_data.csv', 
                 delimiter=',',
                 skiprows=2, 
                 usecols=(list(range(1,9)))

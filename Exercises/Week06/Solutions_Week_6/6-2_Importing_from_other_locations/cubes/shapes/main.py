@@ -6,7 +6,8 @@ The most reliable way to ensure a constant value is used is to import it from:
 """
 # Exercise 2.3    
 
-from spheres.sphere import *  # if pi defined by deveoper in sphere.py
+#from spheres.sphere import *  # if pi defined by deveoper in sphere.py
+from spheres import *
 sphere = Sphere(5)
 
 # OR
@@ -26,8 +27,16 @@ sphere_2 = Sphere(radius)
 import sys
 sys.path.append('../')
 import cube
-C = cube.Cube(10)
+
+# Exercise 5.3
+import new_file
+
+C = cube.Cube(radius)
 print(C.area())
+
+new_file.my_func()
+
+
 
 
 

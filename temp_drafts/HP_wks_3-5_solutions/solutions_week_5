@@ -1,0 +1,143 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Nov  4 16:09:51 2021
+
+@author: hemma
+"""
+# Part 1, Exercsie 1
+class Item():
+    def __init__(self, Description, Number, UnitPrice):
+        
+        self.description = Description
+        self.number = Number
+        self.unitprice = UnitPrice
+        
+        print(f'Created a new item: {self.description}')
+        
+    def PrintItemInfo(self):
+        print(self.description, self.number, self.unitprice)
+        
+    def __str__(self):
+        return self.description
+        
+
+apple = Item('Apple', 1, 5)
+print(apple.description,apple.number,apple.unitprice)
+apple.PrintItemInfo()
+
+print(apple)
+
+
+
+pear = Item('Pear', 2, 3)
+banana = Item('Banana', 3, 6)
+print(pear, banana)
+
+
+
+ShoppingList = [apple, pear, banana]
+
+Total = 0
+for i in ShoppingList:
+    i.PrintItemInfo()
+    Total += i.number * i.unitprice
+print(Total)
+
+
+# Part 2, Exercise 2
+
+class SpecialItem(Item):
+    def __init__(self, Description, Number, UnitPrice, SpecialInfo):
+        super().__init__(Description, Number, UnitPrice)
+        self.specialinfo = SpecialInfo
+        
+    def PrintItemInfo(self):
+        print(self.description, self.number, self.unitprice, self.specialinfo)
+        
+        
+    def __str__(self):
+        return self.description + ': '  + self.specialinfo
+        
+
+paracetamol = SpecialItem('Paracetamol', 2, 3, 'take two tablets every 6 hours')
+
+ShoppingList.append(paracetamol)
+
+print(paracetamol)
+
+paracetamol.PrintItemInfo()
+
+apple.PrintItemInfo()
+
+
+# Part 3
+
+from math import *
+
+class Vector():
+    def __init__(self, x, y, z):
+        self.x = x
+        self.y = y
+        self.z = z
+        
+    def __str__(self):
+        return '<' + str(self.x) + str(self.y) + str(self.z) + '>'
+    
+    def norm(self):
+        return sqrt(self.x**2 + self.y**2 + self.z**2)
+    
+    def __add__(self, other):
+        return Vector(self.x + other.x, 
+                      self.y + other.y, 
+                      self.z + other.z, 
+                      )
+    
+    def __rmul__(self, other):
+        if isinstance(other, int) or isinstance(other, float):
+            return Vector(self.x * other, 
+                          self.y * other, 
+                          self.z * other, 
+                          )
+            
+        else:
+            return (self.x * other.x) + (self.y * other.y) + (self.z * other.z)  
+        
+            
+    def __mul__(self, other):
+        return (self.x * other.x) + (self.y * other.y) + (self.z * other.z)  
+        
+        
+print()    
+print('vectors')
+
+v = Vector(1, 3, 2)
+
+w = Vector(5, 0, 1)
+
+print(v + w)
+
+print(v * w)
+
+print(v.norm())
+print(w.norm())
+
+
+theta = acos(v * w / (v.norm() * w.norm()))
+print(theta)
+
+print(2*v)
+
+
+
+
+
+
+    
+
+    
+  
+
+
+
+      

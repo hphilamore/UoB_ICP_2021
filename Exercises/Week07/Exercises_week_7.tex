@@ -61,6 +61,7 @@
 	\Question{Print the numerical data in the column Mass as a list of {\tt float} values, shown in grams (g) \\ {\bf Hint:} Exclude the column heading from the list. Convert string data to numerical data.}
 	\Question{Print the minimum value of mass in the table ({\bf Hint:} You can use Python's built in {\tt min} function)}
 	
+	
 \end{Exercise}
 
 
@@ -97,6 +98,8 @@
     }
     
     \Question{Store the function in a separate file and call it from your main program.}
+    
+    
 
 \end{Exercise}
 
@@ -167,6 +170,14 @@
     
     Read the data in sample.csv (created in Exercise \ref{Ex:Writing_csv}). Print the values in the Mass column of the imported data in  ascending order. }
     % \Question{Iterate over the files (See lecture slides: {\bf Iterating multiple files}) in folder `a\_folder' and print the file contents. \\{\bf Hint:} Remeber, the function {\tt open} takes the {\it full file path} as the first argument. To join locations as a path you can use {\tt `os.path.join`}
+    
+    \Question{In statistics, the standard deviation (SD), $\sigma$, is a measure of the amount of variation in a set of values. Low SD indicates that values in a data set tend to be close to the mean, $\mu$, high SD indicates that values are spread over a wider range. The SD is found by taking the square root of the variance, where the variance is the average of the squared difference from the mean $\mu$.
+    
+    $$\sigma = \sqrt{\frac{\sum_{i=1}^{N} (x_i - \mu)^2}{N}}$$
+    
+    Write a program that reads the file price\_per\_item.csv and finds the mean and the SD of the values in the 'item\_price' column. 
+    
+    }
 
 \end{Exercise}
 
@@ -195,6 +206,19 @@
 
 \begin{enumerate}[label=(\Alph*)]
     
+    \item  The volume of each sample in samples.csv (created in Exercise \ref{Ex:Writing_csv}) in cm$^3$ is: A = 336, B = 231, C = 350, D = 272, E = 300, F = 312, G = 255. Write a program that:
+    {\begin{itemize}
+        \item reads the contents of the samples.csv file .
+        \item finds the density of each sample in kg/m$^3$.
+        \item writes two new columns to the table: volume(cm3) and density(kg/m3)
+    \end{itemize}} 
+    
+    {\bf Hint} Open the file using a mode specifier that lets you read {\it and} write e.g. `'r+`.
+    
+    {\bf Hint} Numerical data is imported from a  csv file as string data.
+    
+    {\bf Hint} After reading, the position is at the end of the file. To erase it's contents from some position use {\tt truncate(position)}. To return to the beginning of the file use {\tt seek(0)}. 
+    
     \item {\tt sorted()} can be also used to sort one list using the values in another list by using {\tt zip} to group the two lists element wise.
     \vspace{0.5 em}
     \begin{verbatim}
@@ -209,22 +233,14 @@
     Using this example, write a program that:
     \begin{itemize}
         \item asks the user's for a player's name and score.
-        \item add them to the high score table in scores.txt so that the scores remain in descending order.
+        \item include the new player and score in the table to that the scores remain in descending order.
+        \item writes the sorted table to scores.txt.
         \item prints a message to the Console to tell the user if the new score is the highest in the table e.g. {\tt `[Player name] got a new high score of [score]!'} 
     \end{itemize}
     
-    {\bf Hint} Remember to open the file using a mode specifier that lets you read {\it and} write e.g. `'r+`.
     
-    {\bf Hint} Remember, numerical data is exported from a  csv file as string data. 
     
-    {\bf Hint} Remember that after reading, the position is at the end of the file. To return to the beginning of the file use {\tt seek(0)}. To erase it's contents from some position use {\tt truncate()}. 
     
-    \item  Imagine you have not seen the contents of the file samples.csv (created in Exercise \ref{Ex:Writing_csv}). The volume of each sample in cm$^3$ is: A = 336, B = 231, C = 350, D = 272, E = 300, F = 312, G = 255. Write a program that:
-    {\begin{itemize}
-        \item reads the contents of the samples.csv file .
-        \item finds the density of each sample in kg/m$^3$.
-        \item writes two new columns to the table: volume(cm3) and density(kg/m3)
-    \end{itemize}} 
     
  
     

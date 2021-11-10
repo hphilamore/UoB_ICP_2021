@@ -68,14 +68,14 @@
 \Question{Create the file system shown above. Leave all .py files empty to begin with.}
 \Question{In file house.py, create three variables {\tt floor} = the floor number of the building as an integer, {\tt width} = the width of the building on this floor in metres as a float, {\tt length} = the length of the building on this floor in metres as a float, and assign them numerical values. }
 \Question{In file funcs.py, create a function {\tt ceil} that returns the area of the ceiling using the height and width. }
-\Question{Import all contents of house.py, and roof.py to main.py using {\tt *}. }
-\Question{In file main.py, print the following when called, replacing {\tt <x>} and {\tt <y>} with the area of the value of variable {\tt floor} and the area calculated respectively:
+\Question{Import all contents of house.py, and funcs.py to main.py using {\tt *}. }
+\Question{In file main.py, print the following, replacing {\tt <x>} and {\tt <y>} with the area of the value of variable {\tt floor} and the area calculated, respectively:
 \begin{verbatim}
 The area of the ceiling on floor <x> is <y> m2
 \end{verbatim}
 }
 \Question{In file main.py, calculate the height of the roof using {\tt width} as shown in Figure \ref{fig:roof}, where $\theta = \frac{\pi}{6}$ radians. Import all contents if the Python package {\tt math} to use trigonometric functions e.g. {\tt tan}. }
-\Question{Look at the functions and variables in the {\tt math} package (https://docs.python.org/3/library/math.html) What potential namespace issues could arise in this program? Are any errors generated due to namespace issues when running your program? If so, how can you prevent them from happening? }
+\Question{Look at the functions and variables in the {\tt math} package \\ (https://docs.python.org/3/library/math.html) What potential namespace issues could arise in this program? Are any errors generated due to namespace issues when running your program? If so, how can you prevent them from happening? }
 \Question{Instead of computing the roof height within the main file, create a function {\tt roof\_height} in funcs.py that returns this value, and call the function in main.py.  Notice how this effects use of functions and variables from {\tt math}. \\ If imported objects (e.g. {\tt math.pi}) are used to define a function, for example {\tt roof\_height}, then the module that the object belongs to (e.g. {\tt math}) must be imported in the file where the function is defined (e.g. funcs.py) rather than where it is called (e.g. main.py).}
 
 \end{Exercise}
@@ -136,7 +136,7 @@ The area of the ceiling on floor <x> is <y> m2
     
 \end{Exercise}
 
-\begin{Exercise}[title=Importing from upstream locations]
+\begin{Exercise}[title=Importing from upstream locations]\label{Ex:upstream}
 
     \Question{In file cube.py, create a class {\tt Cube} that takes one input argument, the side length with a default value of 1 m.}
     \Question{Give the class two methods that return the surface area and volume of the cube respectively.}
@@ -179,13 +179,37 @@ The area of the ceiling on floor <x> is <y> m2
     % to \_\_init\_\_.py, where . signifies the current directory and <?> is the name of a python module in the current directory. 
     
     % Edit \_\_init\_\_.py in the spheres directory so that sphere.py is imported when sphere is imported. 
+    \item So far we have used {\bf relative imports} to import .py files in other directories to a python programme. The path to the file we want to import is given {\it relative} to the current directory. We can alternatively use {\bf absolute imports} where the path is given relative to the computers home directory. \\
+    For example, to import sphere.py to main.py using relative imports, we can edit the Python path {\tt sys.path.append(`../../')}
     
-    
-    
-    
-    
-    
+    \begin{verbatim}
 
+                        Desktop/
+                        |
+                        |---- __init__.py
+                        |---- sphere.py
+                        |---- my_folder/
+                                |
+                                |---- my_sub_folder/
+                                        |
+                                        |---- main.py
+                                        
+    \end{verbatim}
+    
+    To edit the Python path using absolute imports instead, we can use: 
+
+    {\bf Windows} 
+    \begin{verbatim} sys.path.append(`C:\Desktop\my_folder\my_sub_folder') \end{verbatim}
+    
+    {\bf Mac, Linux} 
+    \begin{verbatim}sys.path.append(`/Users/Hemma/Desktop/my_folder/my_sub_folder')\end{verbatim}
+    
+    Note, you must change {\tt Hemma} to your personal user name. 
+    
+    Notice, the slashes used to separate the sub-directories lean a different way on Windows than on Mac and Linux.  
+
+    Change the arguments to {\tt sys.path.append} in Exercises \ref{Ex:upstream} and \ref{Ex:upstream_downstream} so that the files are imported using the absolute file path. 
+    
     \item Create another sub-directory within the `shapes' sub-directory and create your own python package. Create Python file(s) within the directory and practise calling them from within main.py
     
     

@@ -1,3 +1,6 @@
-6 Ben 50
-7 Ola 500
-8 Ria 460 
+Sid 50
+Jo 20
+Tim 50
+Majid 500
+Ben 50
+Ola 500

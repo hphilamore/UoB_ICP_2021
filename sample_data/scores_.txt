@@ -1,5 +1,2 @@
-Elena 550
-Sajid 480
-Tom 380
-Farhad 305
-Manesha 150
+place name score
+1 Elena 550

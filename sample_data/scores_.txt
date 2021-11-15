@@ -1,2 +1,2 @@
 place name score
-1 Elena 550
+1 Elena 500

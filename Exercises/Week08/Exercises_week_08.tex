@@ -1,0 +1,413 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Header
+\documentclass[11pt]{report}
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\PassOptionsToPackage{hyphens}{url}\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{fullpage}
+\usepackage{nicefrac}
+\usepackage[lastexercise]{exercise}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amsmath}
+
+
+\usepackage{minted}
+\makeatletter
+\AtBeginEnvironment{minted}{\dontdofcolorbox}
+\def\dontdofcolorbox{\renewcommand\fcolorbox[4][]{##4}}
+\makeatother
+
+
+\setlength{\parindent}{0cm}
+
+\renewcommand{\ExerciseHeader}{\large\textbf{\ExerciseName~\ExerciseHeaderNB} - \textbf{\ExerciseTitle}\medskip}
+
+\renewcommand{\ExePartHeader}{\medskip\textbf{\ExePartName\ExePartHeaderNB\ExePartHeaderTitle\medskip}}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Introduction to Computer Programming}
+\subsection*{\Large Exercises -- Week 8. Mathematical computations with Python}
+
+\subsection*{\Large Part 1. SymPy}
+
+\begin{Exercise}[title=Getting familiar with SymPy (Essential)]
+
+  \Question{In SymPy, the keywords {\tt pi} and {\tt E} define the special
+    numbers $\pi$ and $e$. Use the {\tt pprint} or {\tt display} functions 
+    to show that the floating-point representations
+    of these numbers can be computed using {\tt pi.evalf()} and {\tt E.evalf()}.
+    \textbf{Fun fact}: Typing {\tt pi.evalf(n)} computes the first $n$
+    digits of $\pi$. Try executing {\tt pi.evalf(100)}.}
+  
+  \Question{Compute $\cos(\pi/2)$ and show that it is equal to 0.
+    Compute $\log(e^2)$ and show that it is equal to 2. \textbf{Note:}
+    the {\tt log} function in SymPy computes the natural logarithm.
+    }
+
+  \Question{The exponential function $e^{x}$ is defined in SymPy
+    as {\tt exp(x)}. Compute {\tt exp(1)} and assign
+    it to a variable {\tt my\_e}. Use the {\tt evalf} method to compute
+    a floating-point approximation to {\tt my\_e}. You should find that the value
+    is the same as {\tt E.evalf()}.}
+
+  \Question{Suppose that we want to assign the variable {\tt a} the
+    exact value of $1/13$.
+    Try to do this by executing {\tt a = 1/13} and then printing the
+    result using the {\tt pprint} or {\tt display} functions.
+    You should see that a float is computed instead of an exact
+    symbolic expression. To get around this issue,
+    SymPy has a special variable type for fractions called Rational.
+    Use the command {\tt a = Rational(1, 13)} to create a variable of
+    type Rational with value $1/13$ and assign it to {\tt a}. Then print this value to
+    see that the exact representation of $1/13$ has been retained.}
+
+  \Question{Compute the exact value of
+    $43/452 + 54/725 - 10/98$.}
+    
+
+\end{Exercise}
+
+
+\begin{Exercise}[title=Functions (Essential)]
+
+  \Question{Define the symbol $x$ and the function
+    \begin{align}
+      y(x) = \frac{x^2 - 4x + 3}{1 + x^2}
+    \end{align}
+    Compute the values $y(0)$ and $y(4)$ exactly. Compute
+    the floating-point approximation to $y(4)$.}
+
+  \Question{Plot $y(x)$ over the range from $x = -10$ to $x = 10$.}
+
+  \Question{Compute the roots of the function $y$; that is, determine
+    the values of $x$ such that $y(x) = 0$.}
+
+  \Question{SymPy can also compute limits. Look up how to do this using
+    {\tt help(limit)}. Compute
+    \begin{align}
+      \lim_{x \to \infty} y(x).
+    \end{align}
+  }
+
+  \Question{Use the {\tt diff} function to compute the derivative of $y(x)$,
+    which we denote by $y'(x)$. Compute $y'(0)$.}
+
+  \Question{Compute the integral given by
+    \begin{align}
+      A = \int_{0}^{1} y(x)\, dx.
+    \end{align}
+    Then, determine a floating-point approximation to $A$.}
+
+  \Question{(Advanced) Determine the maximum and minimum values of the
+    function $y$. \textbf{Hint}: The positions of the maximum and minimum
+    can be determined by solving $y'(x) = 0$. Then evaluate $y(x)$ at these
+    points. Show that these points are maxima and minima by computing
+    $y''(x)$ at these points and checking the sign.}
+  
+
+\end{Exercise}
+
+\begin{Exercise}[title = Modelling a pandemic (Essential)]
+
+  The increase in the number of individuals infected with a virus can
+  be described by the logistic function
+  \begin{align}
+    P(t) = \frac{K P_0}{P_0 + (K - P_0)e^{-r t}}.
+  \end{align}
+  In this equation, $P$ is the number of infected individuals,
+  $t$ is the number of days since the outbreak of infection, $P_0$ is the
+  number of infected individuals at the time of outbreak,
+  $r$ is the rate of infection, and $K$ is the maximum number of
+  individuals who can be infected.
+
+  \Question{Create symbols {\tt t, r, K, P\_0} for the variables that
+    appear in the logistic function. Store the function $P(t)$ in a
+    variable called {\tt P}.}
+
+  \Question{Create a dictionary called {\tt params} that stores
+    the parameter values $K = 67$, $r = 0.1$, and $P_0 = 0.5$.
+    \textbf{Hint}: treat the symbols as keys when creating the
+    dictionary.}
+
+  \Question{Substitute the dictionary of parameter values into the function
+    $P(t)$ and plot it over the range from
+    $t = 0$ to $t = 100$,
+    You should see that after the outbreak
+    there is a period of rapid, exponential growth. Then, the growth
+    of the infected population begins to slow because there is no one left
+    to infect.}
+
+  
+  \Question{Use the {\tt diff} function to compute the derivative of $P$,
+    which we'll denote by $P'(t)$. Substitute the parameter values
+    into $P'(t)$ and plot it from $t = 0$ to $t = 100$. (Advanced)
+    Estimate when the population of
+    infected individuals is increasing the fastest.}
+
+  \Question{Using the {\tt solve} function, obtain an equation for the
+    time at which half of the population has been infected by the
+    virus. \textbf{Hint}: Half of the total population is $K/2$ so
+    the equation we want to solve is $P(t) = K/2$, which can be
+    reformulated as $P(t) - K/2 = 0$.}
+
+  \Question{Substitute the parameter values into your expression
+    to show that it takes about 50 days (7 weeks) for half of the
+    population to be infected by the virus.
+    Then, create a second parameter set where the infection rate is
+    half of the original, so $r = 0.05$. Show that this
+    \emph{doubles} the time it takes for half of the population to
+    become infected. Hence, reducing the infection rate can
+    substantially delay the spread of the virus.}
+
+  \end{Exercise}
+
+
+  \begin{Exercise}[title=The roots of unity (Advanced)]
+
+	The $n$-th roots of unity are the solutions $z$ of the equation
+    $z^n = 1$. The fundamantal theorem of algebra tells us that
+	there must be $n$ solutions to this equation.  This question
+	will look at computing these solutions.
+
+  \Question{Use SymPy to compute the tenth roots of unity by setting
+    $n = 10$ and then solving for $z$.}
+  \Question{Use a list comprehension along with the
+    {\tt evalf} method to convert the
+    list of exact values that SymPy computes into a list of floats.}
+  \Question{Use another list comprehension to compute floating-point approximations to
+    the numbers $z = e^{2 \pi i m / 10}$ where $i = \sqrt{-1}$ is the
+	imaginary number and $m = 0, 1, \ldots, 9$.  You should see that
+	these are the exactly the roots of unity computed by
+    SymPy (but they are ordered differently in the lists).}
+  \Question{Explore this problem using different values of $n$. Can you think of a formula for the $n$-th roots of unity?}
+
+\end{Exercise}
+
+
+ 
+\begin{Exercise}[title=The period of a pendulum (Advanced)]
+
+  Consider a pendulum that is made up of a sphere of mass $m = 1$~kg that is attached to a string of length $L = 0.5$~m.  Suppose that the mass is displaced so that it makes an angle $\theta_0$ with respect to the vertical.
+When the mass is released, it will swing back and forth.  The purpose of this question is to calculate the period of the oscillations, which is the time
+required for the pendulum to swing one full cycle, that is, to return to
+its initial position once it has been released.
+
+\Question{If the initial angle $\theta_0$ is small, then the pendulum undergoes simple harmonic motion.  The
+period of oscillations, denoted by $T$, is given by the equation
+\begin{align}
+T = 2 \pi \sqrt{\frac{L}{g}},
+\label{eqn:T_lin}
+\end{align}
+where $g = 9.8$~m/s$^2$ is the gravitational acceleration. 
+Using Equation \eqref{eqn:T_lin}, compute the period
+of oscillations with provided parameter values. \textbf{Hint:}
+use the function {\tt sqrt()} to compute the square root.}
+
+\Question{The general expression for the period of a pendulum, which is valid for any value of $\theta_0$, 
+is given by the integral
+\begin{align}
+T = 2 \sqrt{\frac{L}{g}} \int_{-\theta_0}^{\theta_0} \frac{d \theta}{\sqrt{2(\cos \theta - \cos \theta_0)}}.
+\end{align}
+By taking the initial angle to be $\theta_0 = \pi / 4$ (this is equivalent to
+$45^\circ$) and using the values of the length $L$ and gravitational
+acceleration $g$, compute a floating-point approximation to this
+integral. \textbf{Note}: this integral cannot be evaluated exactly,
+so a floating-point approximation is the best we can do!}
+
+\Question{Using a loop, compute the period when
+  $\theta_0 = 0.1 \pi$, $0.2 \pi$, ...,
+  $0.9 \pi$ and print the result at each iteration.
+  What happens to the period $T$ as $\theta_0$ increases?
+    \textbf{Note:} these calculations may take
+  a few minutes depending on the speed of the computer you are using.}
+
+\end{Exercise}
+
+
+\subsection*{\Large Part 2. NumPy}
+
+\begin{Exercise}[title=Creating arrays and accessing elements (Essential)]
+
+  \Question{Create a variable $a$ that stores the array
+    [5, 4, 9, 2, 0, 4, 7, 2].}
+
+  \Question{Print the first entry of $a$ and the last entry of $a$
+    (\textbf{Hint}: You can use the index $-1$ to access the last entry
+    of an array). The colon operator $:$ can be used to access
+    sequential elements of an array. Print the values of
+    {\tt a[1:6]} and explain the output.}
+
+  \Question{Change the last entry of $a$ to $-9$ and print the result.
+    Now run the command {\tt a[0:3] = 1} and print the result. How has this
+    altered the array $a$?}
+
+  \Question{Create an array $r$ that contains 20 random integers between
+    $1$ and $9$ (inclusive). Print the result. This array will be used in the
+    next question.}
+
+  \Question{(Advanced) \textbf{Logical indexing} provides a quick way to access and modify
+    entries in an array that satisfy certain criteria. In this question, we'll use
+    logical indexing to replace all of the entries in $r$ that
+    are smaller than 5 with 0. First, run the command {\tt idx = r < 5}.
+    Print the value of {\tt idx}. Explain the result you see. 
+    Now run the command {\tt r[idx] = 0} and print the value of $r$.
+    What has happened?}
+
+  \Question{Create a variable $A$ to store the matrix
+    \begin{align}
+    \begin{pmatrix}
+      6 & 2 & 3 \\ 4 & 4 & 1 \\ 8 & 5 & 6
+    \end{pmatrix}
+    \end{align}
+    as a NumPy array.
+  }
+
+  \Question{Change the entry in the second row, first column of $A$ to 9. Then
+    change the entry in the last row and last column of $A$ to 0. Print the
+    updated array $A$. The $n$-th row of $A$ can be accessed using the colon
+    operator as {\tt A[n-1,:]}. Similarly, the $m$-th column of $A$ can be
+    accessed using {\tt A[:,m-1]}. Use the colon operator to print the entries
+    in the second row of $A$.}
+
+  \Question{Create a $2 \times 2$ array of zeros and assign it to a variable $A$. 
+    Use the colon
+    operator to set the first row of $A$ to 1 and the second row of $A$ to 2.
+    \textbf{Hint}: The operation {\tt A[n-1,:]~=~q} will set all of the entries in
+    the $n$-th row of $A$ to the value $q$.
+    Using a {\tt for} loop, create a $5 \times 5$ matrix where the entries in
+    row $i$ are equal to $i$.}
+  
+\end{Exercise}
+
+
+\begin{Exercise}[title=Performing operations on NumPy arrays (Essential)]
+
+  \Question{Create two NumPy arrays to store the vectors
+    $a = (3, 5, 2)$ and $b = (6, 3, 1)$. Calculate
+    $c = a + 2b$. Calculate the dot product $a \cdot b$ using
+    the {\tt dot} method or the {\tt dot} function.
+    Can you also compute the dot product using
+    element-by-element multiplication along with the {\tt np.sum}
+    function? Recall that the dot product
+    is defined as $a\cdot b = \sum_{i} a_i b_i$.}
+
+  \Question{Create an array called $t$ that contains 500 values between
+    0 and 5. Create a
+    second array called $y$ that stores the values of $y = t^2 e^{-2 t}$.
+    \textbf{Hint}: use the {\tt exp} function to compute the exponential
+    of a NumPy array. Find the maximum value of $y$. \textbf{Note}: this is
+    a simple way of finding the maximum of a function. 
+    (Advanced): Use logical indexing or otherwise to find the value of $t$ at
+    which $y$ is maximal.
+    (Optional but helpful):
+    Use SymPy to plot the function $y(t)$ and check that your answers
+    are correct.}
+
+  \Question{This question will demonstrate that NumPy can also integrate
+    functions. Unlike SymPy, NumPy can only produce approximate values of
+    integrals. Create a NumPy array $x$ that stores 50 values between 0 and 5.
+    Create the array $y = x / (x + 1)$. Look up how to use NumPy's {\tt trapz}
+    function, which uses the trapezoid rule to approximate integrals.
+    Use {\tt trapz} to compute $\int_{0}^{5} y(x)\, dx$. Use SymPy to compute
+    this integral exactly and compare with the NumPy result. What happens
+    if you repeat the calculation using 500 points between $0$ and $5$?}
+
+  \Question{The table below provides the gravitational acceleration $g$ of each
+    of the planets:
+    \begin{table}[hp!]
+      \centering
+      \begin{tabular}{c|c}
+        Planet & $g$ [m/s$^2$] \\ \hline
+        Mercury & 3.7 \\
+        Venus & 8.9 \\
+        Earth & 9.8 \\
+        Mars & 3.7 \\
+        Jupiter & 25\\
+        Saturn & 10\\
+        Uranus & 8.9\\
+        Neptune & 11\\
+      \end{tabular}
+    \end{table}
+    \\
+    Use NumPy functions to compute the maximum, minimum, mean, and median values of $g$.}
+
+  \Question{Create NumPy arrays to store the matrices
+    \begin{align}
+      A = \begin{pmatrix}
+        1 & 2 & 3 \\ 3 & 2 & 1 \\ 2 & 4 & 6
+      \end{pmatrix},
+                                          \quad
+                                          B = \begin{pmatrix}
+                                            1 & 5 & 0 \\ 0 & 1 & 1 \\ 4 & 3 & 1
+                                          \end{pmatrix}
+    \end{align}
+    Calculate $C = A + 2B$. Then compute $AB$ and $BA$. You should notice that
+    $AB \neq BA$.
+  }
+
+  \Question{A common operation to perform on matrices is to turn the rows into
+    columns and the columns into rows. This is called transposing the matrix.
+    Use the function {\tt transpose} to compute the transpose of $A$ and
+    print the result.}
+
+  \Question{Solve the linear system of equations $Ax = b$ where
+    \begin{align}
+      A = \begin{pmatrix}
+        1 & 0 & 0 & -1 \\
+        1 & -2 & 1 & 0 \\
+        0 & 1 & -2 & 1 \\
+        2 & 0 & 0 & 1
+      \end{pmatrix},
+                    \quad
+                    b = \begin{pmatrix}
+                      0 \\ 1 \\ 1 \\ 2
+                    \end{pmatrix}
+    \end{align}
+    Print the array $x$. Then compute $Ax - b$ and print the result.
+  }
+  
+\end{Exercise}
+
+
+\begin{Exercise}[title=Weather prediction (Advanced)]
+
+  In this example we'll use a \textbf{Markov chain} to create a simple
+  model for weather prediction. To start, we will assume that there are
+  three states of weather: sunny, cloudy, and rainy. We
+  will use the state vector $x = (x_0, x_1, x_2)$ to describe the probabilities
+  of the weather being sunny ($x_0$), cloudy ($x_1$), or rainy ($x_2$).
+  We use a transition matrix $P$ to describe how the weather changes from one
+  day to the next. The entries of the transition matrix, $P_{i,j}$, describe
+  the probability of going from state $i$ to state $j$. For this problem,
+  we will assume that
+  \begin{align}
+    P = \begin{pmatrix}
+      0.5 & 0.3 & 0.2 \\
+      0.4 & 0.2 & 0.4 \\
+      0.6 & 0.2 & 0.2
+    \end{pmatrix}
+  \end{align}
+  The entry $P_{1,1} = 0.5$ means there is a 50\% chance that if a day is sunny,
+  then the next day will be sunny. Similarly, $P_{3,1} = 0.6$ means there is a
+  60\% chance that if a day is rainy, then the next day will be sunny.
+  
+  \Question{Suppose that today is sunny. Then we can write the state vector
+    as $x^{(0)} = (1, 0, 0)$. The weather tomorrow can be predicted by
+    computing
+    the product $x^{(1)} =  x^{(0)} P$.
+    What is the probability that tomorrow will be sunny?}
+
+  \Question{The product $x^{(2)} = x^{(1)} P = x^{(0)} P^2$
+    can be used to predict the weather
+    in two days. What is the probability that it will rain in two days?}
+
+  \Question{Provide a prediction of the weather for seven days from now. That is,
+    compute $x^{(7)}$.}
+
+\end{Exercise}
+
+
+\end{document}
